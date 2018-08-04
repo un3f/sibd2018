@@ -6,7 +6,7 @@ Sistemas de Información y Base de Datos 2018
 * **Universidad Nacional de Tres de Febrero**
 * **Maestría en Generación y Análisis de Información Estadística**
 
-# Sistemas de Información y Base de Datos - año 2017
+# Sistemas de Información y Base de Datos - año 2018
 
 ## Clases
 
@@ -16,23 +16,33 @@ Sistemas de Información y Base de Datos 2018
 
 ## Calendario
 
-lunes     | comisión 1    | miércoles | comisión 2    |
-----------|---------------|-----------|---------------|
-13/8      | clase 1 lab 4 |           |               |
-20/8      |               | 22/8      | clase 1 lab 4 |
-27/8      | clase 2 lab 4 | 29/8      | clase 2 lab 4 |
- 3/9      |               |  5/9      |clase 3 *lab 2*|
-10/9      |               | 12/9      |clase 4 *lab 2*|
-17/9      | clase 3 lab 4 | 19/9      | clase 5 lab 4 |
-24/9      | clase 4 lab 4 | 26/9      | clase 6 lab 4 |
- 1/10     | clase 5 lab 4 |  3/10     | clase 7 lab 4 |
- 8/10     | clase 6 lab 4 | 10/10     | clase 8 lab 4 |
-15/10     |               |           |               |
-22/10     | clase 7 lab 4 |           |               |
-29/10     | clase 9 lab 4 |           |               |
+lunes     |     comisión 1    | miércoles | comisión 2        |
+---------:|-------------------|----------:|-------------------|
+13/8      |   clase 1   lab 4 |           |                   |
+20/8      |                   | 22/8      | clase 1     lab 4 |
+27/8      |   clase 2   lab 4 | 29/8      | clase 2     lab 4 |
+ 3/9      |                   |  5/9      | clase 3    *lab 2*|
+10/9      |                   | 12/9      | clase 4    *lab 2*|
+17/9      |   clase 3   lab 4 | 19/9      | clase 5     lab 4 |
+24/9      |   clase 4   lab 4 | 26/9      | clase 6     lab 4 |
+ 1/10     |   clase 5   lab 4 |  3/10     | clase 7     lab 4 |
+ 8/10     |   clase 6   lab 4 | 10/10     | **parcial** lab 4 |
+15/10     |                   |           |                   |
+22/10     |   clase 7   lab 4 |           |                   |
+29/10     | **parcial** lab 4 |           |                   |
+
+## Régimen de aprobación
+
+* Debe aprobarse el trabajo práctico (grupal)
+* Un parcial que se rendirá el día de la clase 8
+* El examen final (no deben rendir final los alumnos que promocionen la materia)
+
+### Promoción
+
+* Para promocionar la materia debe obtenerse como mínimo un 7 en la nota del parcial y debe haberse aprobado el trabajo práctico habiéndolo entregado antes de la séptima clase
 
 ## Recursos
 
 * [Software necesario para la materia](software.md#software-a-instalar-untref-siybd-2018)
-* [Sitios](sitios.md#sitios-de-referencia-untref-siybd-2016) de referencia, con [información](sitios.md#información) o [herramientas](sitios.md#herramientas)
+* [Sitios](sitios.md#sitios-de-referencia-untref-siybd-2018) de referencia, con [información](sitios.md#información) o [herramientas](sitios.md#herramientas)
 

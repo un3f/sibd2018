@@ -104,3 +104,16 @@ SELECT comuna, count(*) as muestral, sum(fexp) as expandido
   GROUP BY comuna
   ORDER BY comuna;
 ```
+
+select c/with
+
+```sql
+WITH hogares as (
+     SELECT id, nhogar, comuna, v4, h3, v4-h3 as hab_compartidas
+       FROM eah2017_usuarios_hog
+)
+SELECT *
+  FROM hogares
+  WHERE hab_compartidas>0
+  ORDER BY id;
+```

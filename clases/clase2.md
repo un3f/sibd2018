@@ -82,3 +82,25 @@ Siempre hay que verificar con los totales:
 SELECT sum(i.fexp)
   FROM eah2017_usuarios_ind
 ```
+
+## Otros ejemplos vistos en clase
+
+Select no agrupado
+
+```sql
+SELECT id, nhogar, comuna, v4, h3, v4-h3 as hab_compartidas
+  FROM eah2017_usuarios_hog
+  WHERE v4-h3>0
+  ORDER BY comuna, id;
+
+```
+
+Select agrupado
+
+```sql
+SELECT comuna, count(*) as muestral, sum(fexp) as expandido
+  FROM eah2017_usuarios_hog
+  WHERE v4-h3>0
+  GROUP BY comuna
+  ORDER BY comuna;
+```

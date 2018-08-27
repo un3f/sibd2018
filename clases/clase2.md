@@ -117,3 +117,21 @@ SELECT *
   WHERE hab_compartidas>0
   ORDER BY id;
 ```
+
+Porcentaje
+
+```sql
+WITH viviendas as (
+  SELECT *, CASE v2_2 
+              WHEN 1 THEN 'casa' 
+              WHEN 2 THEN 'dto' 
+              ELSE 'otro' 
+            END as tipov
+    FROM eah2017_usuarios_hog
+    WHERE nhogar=1
+)
+SELECT tipov, round(sum(fexp)*100.0/(SELECT sum(fexp) FROM viviendas),1)
+  FROM viviendas
+  GROUP BY tipov
+  ORDER BY tipov;
+```

@@ -160,3 +160,23 @@ SELECT comuna, tipov,
   GROUP BY comuna, tipov
   ORDER BY comuna, tipov;
 ```
+
+con joins
+
+```sql
+WITH hogares as (
+  SELECT *, CASE v2_2 
+              WHEN 1 THEN 'casa' 
+              WHEN 2 THEN 'dto' 
+              ELSE 'otro' 
+            END as tipov
+    FROM eah2017_usuarios_hog
+)
+SELECT tipov, 
+       round(sum(h.fexp)*100.0/(SELECT sum(fexp) FROM eah2017_usuarios_ind)
+       ,1) as porcentaje 
+  FROM hogares as h
+    JOIN eah2017_usuarios_ind as i ON h.id=i.id AND h.nhogar=i.nhogar
+  GROUP BY tipov
+  ORDER BY tipov;
+```

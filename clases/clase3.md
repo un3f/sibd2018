@@ -86,6 +86,9 @@ CREATE TABLE miembros AS
 ```
 
 ```sql
+ALTER TABLE miembros
+  ADD PRIMARY KEY (id, nhogar, miembro);
+
 ALTER TABLE miembros 
   ADD FOREIGN KEY (id, nhogar) REFERENCES hogares (id, nhogar);
 ```

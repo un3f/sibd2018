@@ -134,6 +134,17 @@ SELECT grupo_th, count(*)
   FROM hogares
   GROUP BY grupo_th
   ORDER BY 1;
+  
+UPDATE hogares as h
+  SET grupo_th = 
+          CASE WHEN hacinam_2 = 3 THEN 1 ELSE 0 END + 
+          CASE WHEN cant_mie > 5 THEN 1 ELSE 0 END;
+
+SELECT grupo_th, count(*)
+  FROM hogares
+  GROUP BY grupo_th
+  ORDER BY 1;
+
 ```
 
 

@@ -16,12 +16,12 @@ Sistemas de Información y Base de Datos 2018
 
 ## Calendario
 
-lunes     |     comisión 1    | miércoles | comisión 2        |
----------:|-------------------|----------:|-------------------|
-13/8      |   clase 1   lab 4 |           |                   |
+lunes     |     comisión 1    | miércoles | comisión 2        |pdf|
+---------:|-------------------|----------:|-------------------|---|
+13/8      |   clase 1   lab 4 |           |                   | [pdf 1](./pdfs/SIyBD-clase%201.pdf) |
 20/8      |                   | 22/8      | clase 1     lab 4 |
-27/8      |   clase 2   lab 4 | 29/8      | clase 2     lab 4 |
- 3/9      |                   |  5/9      | clase 3    *lab 2*|
+27/8      |   clase 2   lab 4 | 29/8      | clase 2     lab 4 | [pdf 2](./pdfs/SIyBD-clase%202.pdf) |
+ 3/9      |                   |  5/9      | clase 3    *lab 2*| [pdf 3](./pdfs/SIyBD-clase%203.pdf) |
 10/9      |                   | 12/9      | clase 4    *lab 2*|
 17/9      |   clase 3   lab 4 | 19/9      | clase 5     lab 4 |
 24/9      |   clase 4   lab 4 | 26/9      | clase 6     lab 4 |

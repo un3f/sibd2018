@@ -32,6 +32,25 @@ insert into def_tabulados
          ('cuadro 2','zona, sexo','edad>=10','personas','t_2');
 ```
 
+```sql
+Genero el SQL de la generación del tabulado a partir de los metadatos
+SELECT replace(replace($$
+WITH viviendas AS (
+  SELECT ${var_corte},
+         fexp
+    FROM eah2015_usuarios_hog
+    WHERE ${filtro})
+SELECT ${var_corte}, 
+       SUM(fexp)*100.0/(SELECT SUM(fexp) FROM viviendas)
+  FROM viviendas
+  GROUP BY ${var_corte}
+  ORDER BY ${var_corte};
+$$,'${var_corte}',var_corte)
+,'${filtro}',filtro) as el_sql_del_tabulado
+  FROM def_tabulados
+  WHERE tabulado='cuadro 1';
+```
+
 ## abuelos y nietos
 
 ```sql

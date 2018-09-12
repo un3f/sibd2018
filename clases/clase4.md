@@ -53,6 +53,15 @@ $$,'${var_corte}',var_corte)
 
 ## abuelos y nietos
 
+Qué porcentaje de nietos que viven con abuelos jefes:
+
+```sql
+SELECT sum(CASE WHEN p5_2=5 THEN fexp ELSE 0 END)*100.0/
+       sum(fexp) as cant_nietos
+  from miembros
+  limit 100;
+```
+
 ```sql
 select * -- count(*), sum(fexp)
   from miembros m

@@ -16,6 +16,21 @@ SELECT v2_2,
   ORDER BY v2_2;
 ```
 
+Genero los metadatos de los tabulados:
+
+```sql
+create table def_tabulados(
+  tabulado text primary key,
+  var_corte text,
+  filtro text,
+  u_a text,
+  plantilla text
+);
+
+insert into def_tabulados 
+  values ('cuadro 1','comuna, v2_2','nhogar=1','hogares','t_2'),
+         ('cuadro 2','zona, sexo','edad>=10','personas','t_2');
+```
 
 ## abuelos y nietos
 

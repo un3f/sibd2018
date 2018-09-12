@@ -1,0 +1,263 @@
+# hecho en clase
+```sql
+select * -- count(*), sum(fexp)
+  from miembros m
+  where parentes_2 = 5 -- nieto
+     OR parentes_2 = 3 -- hijo
+       AND EXISTS (SELECT * 
+                     FROM miembros p
+                     WHERE p.id = m.id
+                       AND p.nhogar = m.nhogar -- del mismo hogar
+                       AND p.parentes_2 = 6)-- que sea padre
+                      -- otro registro 
+
+```
+
+```sql
+select n.id, n.nhogar, n.miembro, avg(a.edad - n.edad) as promedio
+  from miembros n
+    join miembros a
+      on n.id = a.id AND n.nhogar = a.nhogar
+        AND a.parentes_2 = 
+          CASE WHEN n.parentes_2 = 5 THEN 1
+               WHEN n.parentes_2 = 3 THEN 6
+          END
+  where n.parentes_2 = 5 -- nieto
+     OR n.parentes_2 = 3 -- hijo
+  GROUP BY n.id, n.nhogar, n.miembro
+
+```
+
+```sql
+select avg(promedio), avg(promedio) - 54.7538461538461538
+from (
+select n.id, n.nhogar, n.miembro, avg(a.edad - n.edad) as promedio
+  from miembros n
+    join miembros a
+      on n.id = a.id AND n.nhogar = a.nhogar
+        AND a.parentes_2 = 
+          CASE WHEN n.parentes_2 = 5 THEN 1
+               WHEN n.parentes_2 = 3 THEN 6
+          END
+  where n.parentes_2 = 5 -- nieto
+     OR n.parentes_2 = 3 -- hijo
+  GROUP BY n.id, n.nhogar, n.miembro
+) promedio_por_nieto```
+
+```
+
+```sql
+select sexo, avg(promedio), avg(promedio) - 54.7538461538461538
+from (
+select n.id, n.nhogar, n.miembro, a.sexo, avg(a.edad - n.edad) as promedio
+  from miembros n
+    join miembros a
+      on n.id = a.id AND n.nhogar = a.nhogar
+        AND a.parentes_2 = 
+          CASE WHEN n.parentes_2 = 5 THEN 1
+               WHEN n.parentes_2 = 3 THEN 6
+          END
+  where n.parentes_2 = 5 -- nieto
+     OR n.parentes_2 = 3 -- hijo
+  GROUP BY n.id, n.nhogar, n.miembro, a.sexo
+) promedio_por_nieto
+GROUP BY sexo
+```
+
+```sql
+select a.sexo, avg(a.edad - n.edad) as p_dif
+       , avg(a.edad) as p_edad_abuelo
+       , avg(n.edad) as p_edad_nieto
+       , count(*) as cantidad
+  from miembros n
+    join miembros a
+      on n.id = a.id AND n.nhogar = a.nhogar
+        AND a.parentes_2 = 
+          CASE WHEN n.parentes_2 = 5 THEN 1
+               WHEN n.parentes_2 = 3 THEN 6
+          END
+  where n.parentes_2 = 5 -- nieto
+     OR n.parentes_2 = 3 -- hijo
+  GROUP BY a.sexo
+```
+
+```sql
+CREATE TABLE comunas
+  AS SELECT DISTINCT comuna 
+       FROM viviendas
+       ORDER BY comuna;
+       
+ALTER TABLE comunas
+  ADD PRIMARY KEY (comuna);
+  
+ALTER TABLE comunas
+  ADD zona INTEGER;  
+  
+UPDATE comunas SET zona = 
+  CASE WHEN comuna in (2,13,14) THEN 1
+     WHEN comuna in (4,8,9,10) THEN 3
+     ELSE 2 END;
+```
+
+```sql
+select a.sexo, zona
+       , 1.0*sum((a.edad - n.edad)*n.fexp)/sum(n.fexp) as p_dif
+       , 1.0*sum(a.edad*n.fexp)/sum(n.fexp) as p_edad_abuelo
+       , 1.0*sum(n.edad*n.fexp)/sum(n.fexp) as p_edad_nieto
+       , 1.0*sum(n.fexp) as cantidad
+  from miembros n
+    join miembros a
+      on n.id = a.id AND n.nhogar = a.nhogar
+        AND a.parentes_2 = 
+          CASE WHEN n.parentes_2 = 5 THEN 1
+               WHEN n.parentes_2 = 3 THEN 6
+          END
+    join comunas c on c.comuna = n.comuna
+  where n.parentes_2 = 5 -- nieto
+     OR n.parentes_2 = 3 -- hijo
+  GROUP BY a.sexo, zona
+  order by zona, a.sexo
+```
+
+```sql
+select count(distinct array[n.id, n.nhogar, n.miembro])
+       , 1.0*sum(n.fexp) as cantidad
+  from miembros n
+    join miembros a
+      on n.id = a.id AND n.nhogar = a.nhogar
+        AND a.parentes_2 = 1
+    join comunas c on c.comuna = n.comuna
+  where n.parentes_2 = 5 -- nieto
+    AND NOT EXISTS (
+      SELECT *
+        FROM miembros o
+        WHERE o.id = n.id AND o.nhogar = n.nhogar
+          AND o.parentes_2 IN (3,4,7,8,9)
+    )
+```
+
+```sql
+```
+```sql
+```
+
+# otras maneras
+
+```sql
+SELECT nieto.id, nieto.nhogar
+  FROM miembros as jefe 
+    inner join miembros as nieto 
+       on jefe.id=nieto.id and jefe.nhogar=nieto.nhogar
+  WHERE jefe.parentes_2=1 
+    and nieto.parentes_2=5
+  ORDER BY nieto.id, nieto.nhogar
+  
+  
+SELECT nieto.id, nieto.nhogar
+  FROM miembros as nieto 
+  WHERE nieto.parentes_2=5
+  ORDER BY nieto.id, nieto.nhogar
+
+SELECT hijo.id, hijo.nhogar
+  FROM miembros as padre 
+    inner join miembros as hijo 
+       on padre.id=hijo.id and padre.nhogar=hijo.nhogar
+  WHERE padre.parentes_2=6 
+    and hijo.parentes_2=3
+  ORDER BY hijo.id, hijo.nhogar  
+
+-- hay repetidos
+
+SELECT DISTINCT hijo.id, hijo.nhogar
+  FROM miembros as padre 
+    inner join miembros as hijo 
+       on padre.id=hijo.id and padre.nhogar=hijo.nhogar
+  WHERE padre.parentes_2=6 
+    and hijo.parentes_2=3
+  ORDER BY hijo.id, hijo.nhogar  
+
+WITH hogares_AN as (
+SELECT DISTINCT hijo.id, hijo.nhogar
+  FROM miembros as padre 
+    inner join miembros as hijo 
+       on padre.id=hijo.id and padre.nhogar=hijo.nhogar
+  WHERE padre.parentes_2=6 
+    and hijo.parentes_2=3
+UNION 
+SELECT DISTINCT nieto.id, nieto.nhogar
+  FROM miembros as nieto 
+  WHERE nieto.parentes_2=5
+ORDER BY id, nhogar) 
+SELECT sum(fexp)*100.0/
+     (SELECT SUM(fexp) FROM hogares AS h INNER JOIN viviendas AS v ON v.id=h.id)
+  FROM hogares_AN AS h inner join viviendas AS v ON v.id=h.id
+  
+  
+-- por comuna
+
+WITH hogares_AN as (
+SELECT DISTINCT hijo.id, hijo.nhogar
+  FROM miembros as padre 
+    inner join miembros as hijo 
+       on padre.id=hijo.id and padre.nhogar=hijo.nhogar
+  WHERE padre.parentes_2=6 
+    and hijo.parentes_2=3
+UNION 
+SELECT DISTINCT nieto.id, nieto.nhogar
+  FROM miembros as nieto 
+  WHERE nieto.parentes_2=5
+ORDER BY id, nhogar) 
+SELECT comuna, sum(fexp)*100.0/
+     (SELECT SUM(fexp) 
+        FROM hogares AS h 
+        INNER JOIN viviendas AS v2 ON v2.id=h.id
+        WHERE v1.comuna=v2.comuna
+      )
+  FROM hogares_AN AS h inner join viviendas AS v1 ON v1.id=h.id
+  GROUP BY comuna
+  ORDER BY comuna
+  
+  
+CREATE TABLE comunas
+  AS SELECT DISTINCT comuna 
+       FROM viviendas
+       ORDER BY comuna;
+       
+ALTER TABLE comunas
+  ADD PRIMARY KEY (comuna);
+  
+ALTER TABLE comunas
+  ADD zona INTEGER;  
+  
+UPDATE comunas SET zona = 
+  CASE WHEN comuna in (2,13,14) THEN 1
+     WHEN comuna in (4,8,9,10) THEN 3
+     ELSE 2 END;
+     
+WITH hogares_AN as (
+SELECT DISTINCT hijo.id, hijo.nhogar
+  FROM miembros as padre 
+    inner join miembros as hijo 
+       on padre.id=hijo.id and padre.nhogar=hijo.nhogar
+  WHERE padre.parentes_2=6 
+    and hijo.parentes_2=3
+UNION 
+SELECT DISTINCT nieto.id, nieto.nhogar
+  FROM miembros as nieto 
+  WHERE nieto.parentes_2=5
+ORDER BY id, nhogar) 
+, vivZ AS (
+  select v.*, zona 
+    FROM viviendas AS v 
+    INNER JOIN comunas AS c ON v.comuna=c.comuna
+)
+SELECT zona, sum(fexp)*100.0/
+     (SELECT SUM(fexp) 
+        FROM hogares AS h 
+        INNER JOIN vivZ AS v2 ON v2.id=h.id
+        WHERE v1.zona=v2.zona
+      )
+  FROM hogares_AN AS h inner join vivZ AS v1 ON v1.id=h.id
+  GROUP BY zona
+  ORDER BY zona     
+```

@@ -60,6 +60,19 @@ SELECT sum(CASE WHEN parentes_2=5 and edad<18 THEN fexp ELSE 0 END)*100.0/
        sum(fexp) as cant_nietos
   from miembros;
 ```
+Zonifico las viviendas de acuerdo con su comuna
+
+```sql
+alter table viviendas add column zona integer;
+
+update viviendas set zona = 
+  CASE WHEN comuna in (2,13,14) THEN 1
+     WHEN comuna in (4,8,9,10) THEN 3
+     ELSE 2 END;
+```
+
+
+
 
 ### ----------
 

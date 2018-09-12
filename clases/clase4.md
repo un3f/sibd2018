@@ -70,9 +70,21 @@ update viviendas set zona =
      WHEN comuna in (4,8,9,10) THEN 3
      ELSE 2 END;
 ```
+Calculo por zona cantidades, denominadores y proporciones, totales y expandidos:
 
-
-
+```sql
+SELECT zona,
+       sum(CASE WHEN parentes_2=5 and edad<18 THEN v.fexp ELSE 0 END) as c_nietos,
+       sum(v.fexp) as cant_total,
+       sum(CASE WHEN parentes_2=5 and edad<18 THEN v.fexp ELSE 0 END)*100.0/
+       sum(v.fexp) as p_nietos,
+       sum(CASE WHEN parentes_2=5 and edad<18 THEN 1 ELSE 0 END) as c_nietosm,
+       sum(1) as cant_totalm,
+       sum(CASE WHEN parentes_2=5 and edad<18 THEN 1 ELSE 0 END)*100.0/
+       sum(1) as p_nietosm
+  from miembros AS m JOIN viviendas AS v ON m.id=v.id
+  GROUP BY zona;
+```
 
 ### ----------
 

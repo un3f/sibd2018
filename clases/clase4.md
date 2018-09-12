@@ -1,4 +1,24 @@
 # hecho en clase
+
+## metadatos de tabulados
+
+Elijo un SQL que obtiene datos para un tabulado como primer plantilla:
+```sql
+WITH viviendas AS (
+  SELECT v2_2,
+         fexp
+    FROM eah2015_usuarios_hog
+    WHERE nhogar=1)
+SELECT v2_2, 
+       SUM(fexp)*100.0/(SELECT SUM(fexp) FROM viviendas)
+  FROM viviendas
+  GROUP BY v2_2
+  ORDER BY v2_2;
+```
+
+
+## abuelos y nietos
+
 ```sql
 select * -- count(*), sum(fexp)
   from miembros m

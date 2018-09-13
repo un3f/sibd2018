@@ -95,6 +95,27 @@ SELECT m.id,m.nhogar,
   ORDER BY 3 DESC, 1,2;
 ```
 
+Proporcion de hogares con nietos
+
+```sql
+WITH hogares_nieto AS (
+SELECT m.id,m.nhogar,
+       sum(CASE WHEN parentes_2=5 and edad<18 THEN 1 ELSE 0 END) as c_nietos,
+       m.fexp,
+       v.zona
+  from miembros AS m JOIN viviendas AS v ON m.id=v.id
+  GROUP BY m.id,m.nhogar,m.fexp,v.zona
+)
+SELECT zona, 
+       sum(CASE WHEN c_nietos>0 THEN fexp ELSE 0 END) as c_h_c_n,
+       sum(fexp) as c_h,
+       sum(CASE WHEN c_nietos>0 THEN fexp ELSE 0 END)*100.0/
+       sum(fexp) as p_h_c_n
+  FROM hogares_nieto
+  GROUP BY zona
+  ORDER BY zona;
+```
+       
 
 ### ----------
 

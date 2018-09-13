@@ -85,6 +85,16 @@ SELECT zona,
   from miembros AS m JOIN viviendas AS v ON m.id=v.id
   GROUP BY zona;
 ```
+Listar cada hogar con la cantidad de nietos en el hogar:
+
+```sql
+SELECT m.id,m.nhogar,
+       sum(CASE WHEN parentes_2=5 and edad<18 THEN 1 ELSE 0 END) as c_nietos
+  from miembros AS m JOIN viviendas AS v ON m.id=v.id
+  GROUP BY m.id,m.nhogar
+  ORDER BY 3 DESC, 1,2;
+```
+
 
 ### ----------
 

@@ -40,3 +40,11 @@ function palindromo(texto){
     })
 }
 ```
+
+## ejemplo para el triángulo isósceles:
+```js
+function isosceles(a,b,c){
+    return (a==b || b==c || a==c) && (a != c || a !=b || b!=c)
+      && (a+b>c) && (a+c>b) && (b+c>a);
+}
+```

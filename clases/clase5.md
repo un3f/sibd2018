@@ -4,7 +4,7 @@
 
 Hoy vamos a intentar poner en línea una mini aplicación web basada en base de datos. 
 
-Primero hay que levantar el backup de la base de datos de la clase3 [clase3_db](dbs/clase3_db.backup)
+Primero hay que levantar el backup de la base de datos de la clase3 [clase3_db](../dbs/clase3_db.backup)
 
 Luego hay que instalar el backend.
 

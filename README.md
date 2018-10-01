@@ -22,13 +22,13 @@ lunes     |     comisión 1    | miércoles | comisión 2        |pdf|
 20/8      |                   | 22/8      | clase 1     lab 4 |
 27/8      |   clase 2   lab 4 | 29/8      | clase 2     lab 4 | [pdf 2](./pdfs/SIyBD-clase%202.pdf) |
  3/9      |                   |  5/9      | clase 3    *lab 2*| [pdf 3](./pdfs/SIyBD-clase%203.pdf) |
-10/9      |                   | 12/9      | clase 4    *lab 2*|
-17/9      |   clase 3   lab 4 | 19/9      | clase 5     lab 4 |
-24/9      |   clase 4   lab 4 | 26/9      | clase 6     lab 4 |
- 1/10     |   clase 5   lab 4 |  3/10     | clase 7     lab 4 |
- 8/10     |   clase 6   lab 4 | 10/10     | **parcial** lab 4 |
+10/9      |                   | 12/9      | clase 4    *lab 2*| [pdf 4](./pdfs/SIyBD-clase%204.pdf) |
+17/9      |   clase M   lab 4 | 19/9      | clase 5     lab 4 | [pdf 5](./pdfs/SIyBD-clase%205.pdf) |
+24/9      |   clase 3   lab 4 | 26/9      | clase M     lab 4 | [pdf M](./pdfs/SIyBD-clase%20M.pdf) |
+ 1/10     |   clase 4   lab 4 |  3/10     | clase 6     lab 4 |
+ 8/10     |   clase 5   lab 4 | 10/10     | **parcial** lab 4 |
 15/10     |                   |           |                   |
-22/10     |   clase 7   lab 4 |           |                   |
+22/10     |   clase 6   lab 4 |           |                   |
 29/10     | **parcial** lab 4 |           |                   |
 
 ## Régimen de aprobación

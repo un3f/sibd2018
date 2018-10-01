@@ -147,7 +147,28 @@ SELECT zona,
   GROUP BY zona
   ORDER BY zona;
 ```
-       
+
+### la manera de los lunes
+
+```sql
+WITH hogares_ni as (
+ SELECT id, nhogar, 
+    sum(
+      CASE WHEN parentes_2=5 and edad<18 THEN 1 ELSE 0 END
+    ) cant_nietos
+  from miembros
+  group by id, nhogar
+ UNION distinct
+ SELECT m1.id, m1.nhogar, count(distinct m1.miembro) as cant_nietos
+  from miembros m1 
+    inner join miembros m2 on m1.id=m2.id and m1.nhogar=m2.nhogar
+  where m1.parentes_2=3 and m2.parentes_2=6
+  group by m1.id, m1.nhogar
+)
+SELECT sum(case when cant_nietos>0 then fexp else 0 end)*100.0/sum(fexp)
+  from hogares_ni hn 
+    inner join viviendas v on hn.id=v.id;
+```
 
 ### ----------
 

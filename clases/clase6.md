@@ -1,6 +1,6 @@
-# clase 2
+# clase 6
 
-## ejemplos SQL usados en la clase
+## A.C.I.D.
 
 Para empezar hay que crear una base de datos llamada **clase6_db**
 
